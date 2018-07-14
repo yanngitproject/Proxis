@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="ui/default :: document_head">
+</th:block>
+
+
+<body
+	th:with="
+    	pageTitle = '',
+    	contentTemplateFragment = 'page_content',
+    	formDescription = ${user.userId} ? 'Editing '+ ${user.userName} : 'Creating a new user'
+    ">
+	<div th:replace="ui/default :: document_body">
+		<div th:fragment="page_content" id="user-creation-card" class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<h4 class="title" th:text="${pageTitle}"></h4>
+                       <p class="category" th:text="${formDescription}"></p>
+					</div>
+					<div class="card-content">
+						<form method="post" th:action="@{/update}"
+							autocomplete="off">
+							<input type="hidden" th:field="*{user.userId}" /> <input
+								type="hidden" th:field="*{user.userPassword}" /> <label>First
+								Name</label> <input type="text" name="firstname"
+								th:field="*{user.userFirstName}" /> <label>Last Name</label> <input
+								type="text" name="lastname" placeholder="Enter Last Name"
+								th:field="*{user.userLastName}" /> <label>Username</label> <input
+								type="text" name="username" th:field="*{user.userName}" /> <label>Sex</label>
+							<select id="sel1" th:field="*{user.userSex}" name="sex">
+								<option value="Man">Man</option>
+								<option value="Woman">Woman</option>
+							</select> <label>Phone Number</label> <input type="text"
+								th:field="*{user.userPhoneNumber}" name="phonenumber" /> <br />
+							<label>Email Address</label> <input type="email" name="email"
+								th:field="*{user.userEmail}" id="InputEmail"
+								aria-describedby="emailHelp" /> <label>Matricule</label> <input
+								type="text" name="matricule" th:field="*{user.userMatricule}" />
+
+
+							<label>Department</label> <input type="text" name="department"
+								th:field="*{user.userDepartment}" /> <label>Address</label>
+							<textarea placeholder="Enter Complete Address " rows="2"
+								th:field="*{user.userAddress}" name="address">
+							</textarea>
+							<label>Activate</label> <select th:field="*{user.enable}"
+								name="enable">
+								<option value="yes">True</option>
+								<option value="no">False</option>
+							</select><br /> <label>Roles</label>
+							<div th:each="role : ${rolesList}">
+								<input type="checkbox" th:id="${{role}}" th:value="${role.id}"
+									th:field="*{user.roles}" /> <label th:for="${{role}}"
+									th:text="${role.label}"></label>
+							</div>
+
+							<input type="submit" class="btn btn-info" value="UPDATE" />
+
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<th:block th:include="ui/default :: document_scripts">
+</th:block>
+
+</html>

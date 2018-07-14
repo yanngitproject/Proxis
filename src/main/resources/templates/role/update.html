@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="ui/default :: document_head">
+</th:block>
+
+
+<body
+	th:with="
+    	pageTitle = '',
+    	contentTemplateFragment = 'page_content',
+    	formDescription = ${role.id} ? 'Editing ' + ${role.label} : 'Creating a new user role'
+    ">
+	<div th:replace="ui/default :: document_body">
+		<div th:fragment="page_content" id="role-creation-card" class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<p class="category" th:text="${formDescription}"></p>
+					</div>
+					<div class="card-content">
+						<form method="post"
+							th:action="@{/roles/update/{id}(id=${role.id})}"
+							th:object="${role}" autocomplete="off">
+
+
+							<label>Role</label> <input type="text" th:field="*{label}"
+								class="form-control" required="true" /> <label>Code</label> <input
+								type="text" class="form-control" th:value="${{role.code}}"
+								disabled="true" /> <label>Users</label>
+							<div th:each="user : ${usersList}">
+								<input type="checkbox" th:id="${{user}}"
+									th:value="${user.userId}" th:field="*{users}" /> <label
+									th:for="${{user}}" th:text="${user.fullName}"></label>
+							</div>
+							<input type="submit" class="btn btn-inverse" value="Update" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<th:block th:include="ui/default :: document_scripts">
+</th:block>
+
+</html>

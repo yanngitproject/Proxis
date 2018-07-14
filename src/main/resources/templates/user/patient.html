@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>profil/patient</title>
+<link rel="stylesheet" type="text/css" href="../static/css/design.css"
+	th:href="@{/css/design.css}" />
+</head>
+<body>
+	<div class="tab">
+		<button class="tablinks" onclick="openCity(event, 'book')">Book
+			a doctor</button>
+		<button class="tablinks" id="defaultOpen"
+			onclick="openCity(event, 'profil')">My Profile</button>
+		<button class="tablinks" onclick="openCity(event, 'consultations')">
+			My consultations</button>
+		<a th:href="@{/logout}" style="float: right;">Logout</a>
+	</div>
+
+	<div id="book" class="tabcontent"></div>
+
+	<div id="profil" class="tabcontent">
+		<form th:action="@{/UpdatePatient}" method="post" enctype="multipart/form-data">
+
+			<fieldset>
+				<legend>Personnal Informations</legend>
+				<input type="hidden" th:field="*{patient.userId}" /> <input
+					type="hidden" th:field="*{patient.userName}" /> <input
+					type="hidden" th:field="*{patient.enable}" /> <input type="hidden"
+					th:field="*{patient.userPassword}" /> <input type="hidden"
+					th:field="*{patient.userConnectionNumber}" />
+					<input type="hidden"
+					th:field="*{patient.createdAt}" /> 
+					<input type="hidden"
+					th:field="*{patient.updatedAt}" /> 
+					<input type="hidden"
+					th:field="*{patient.confirmationToken}" /> 
+					<input type="hidden"
+					th:field="*{patient.resetToken}" /> 
+					<input type="hidden"
+					th:field="*{patient.userType}" /> 
+				<p>
+					<label>FirstName : </label><input type="text"
+						th:field="*{patient.userFirstName}" />
+				</p>
+				<p>
+					<label>Last Name : </label><input type="text"
+						th:field="*{patient.userLastName}" />
+				</p>
+				<p>
+					<label>Birthday : </label><input type="date"
+						th:field="*{patient.userBirthdayDate}" />
+				</p>
+				<p>
+					<label>Email : </label><input type="email"
+						placeholder="Example : your@proxis.com"
+						th:field="*{patient.userEmail}" />
+				</p>
+				<p>
+					<label>Phone Number : </label><input type="number"
+						th:field="*{patient.userPhoneNumber}" />
+				</p>
+
+				<p>
+					<label>City or neighborhood nearest you : </label><select
+						th:field="*{patient.userCity}">
+						<optgroup th:label="DOUALA">
+							<option th:each="city:${doualaCities}" th:text=${city}
+								th:value=${city}></option>
+						</optgroup>
+						<optgroup th:label="YAOUNDE">
+							<option th:each="city:${yaoundeCities}" th:text=${city}
+								th:value=${city}></option>
+						</optgroup>
+					</select>
+				</p>
+
+				<p>
+					<label>Upload your CNI : </label><input type="file" th:field="*{patient.cni}" name="cni" />
+				</p>
+
+			</fieldset>
+
+			<fieldset>
+				<legend>Medical Informations</legend>
+
+				<p>
+					<label>Gender : </label><select th:field="*{patient.userGender}"><option
+							th:each="gender : ${genders}" th:value="${gender}"
+							th:text="${gender}"></option>
+					</select>
+				</p>
+
+				<p>
+					<label>Weight : </label><input type="number"
+						th:text="${userweight}" th:field="*{patient.userweight}" />
+				</p>
+				<p>
+					<label>Height : </label><input type="number"
+						th:text="${userHeight}" th:field="*{patient.userHeight}" />
+				</p>
+
+				<p>
+					<label>Blood group : </label><select
+						th:field="*{patient.bloodGroup}">
+						<option th:each="blood : ${bloods}" th:value="${blood}"
+							th:text="${blood}"></option>
+
+					</select>
+				</p>
+
+				<P>
+					<label>Do you have allergies ? </label><br />
+					<input  th:text="${allergies}"
+						th:field="*{patient.allergies}" />
+				<P>
+					<label>Enumerated your important history diseases : </label><br />
+					<input type="text"  th:text="${antecedents}"
+						th:field="*{patient.antecedents}"/>
+			</fieldset>
+
+			<input type="submit" value="Update profil">
+
+		</form>
+	</div>
+
+	<div id="consultations" class="tabcontent"></div>
+
+	<script src="../static/js/design.js" th:src="@{/js/design.js}">
+	</script>
+</body>
+</html>

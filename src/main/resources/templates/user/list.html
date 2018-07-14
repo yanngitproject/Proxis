@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="ui/default :: document_head">
+</th:block>
+
+
+<body
+	th:with="
+    	pageTitle = '',
+    	contentTemplateFragment = 'page_content'
+    ">
+	<div th:replace="ui/default :: document_body">
+		<div th:fragment="page_content" id="users-list-card" class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<h4 class="title" th:text="${pageTitle}"></h4>
+						<p class="category">List of the available  the users
+							on the platform</p>
+						<div class="pull-right">
+							<a
+								th:replace="ui/buttons :: add_button (href = '/users/register', btnTitle = 'New User')"></a>
+						</div>
+					</div>
+					<div class="card-content table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Activate</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>UserName</th>
+									<th>Sexe</th>
+									<th>Matricule</th>
+									<th>Email</th>
+									<th>Phone</th>
+									<th>Department</th>
+									<th>Address</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="user,iter: ${usersList}">
+									<td th:text="${iter.index}+1"></td>
+									<td th:text="${user.enable}"></td>
+									<td th:text="${user.userFirstName}"></td>
+									<td th:text="${user.userLastName}"></td>
+									<td th:text="${user.userName}"></td>
+									<td><select id="sel1" name="sex">
+											<option th:value="${user.userSex}" th:text="${user.userSex}"
+												th:selected="${user.userSex}"></option>
+											<option th:if="${user.userSex}==Man" th:value="Woman"
+												th:text="Woman"></option>
+											<option th:if="${user.userSex}==Woman" th:value="Man"
+												th:text="Man"></option>
+									</select></td>
+									<td th:text="${user.userMatricule}"></td>
+									<td th:text="${user.userEmail}"></td>
+									<td th:text="${user.userPhoneNumber}"></td>
+									<td th:text="${user.userDepartment}"></td>
+									<td><textarea rows="2" cols="19"
+											th:text="${user.userAddress}"></textarea></td>
+									<td><a class="btn" th:href="@{/users/edit(userId=${user.userId})}"
+										>EDIT</a></td>
+									<td><a class="btn" onclick="return confirm('êtes vous sûr ?')"
+										th:href="@{/users/delete(userId=${user.userId})}"
+										>DELETE</a></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<th:block th:include="ui/default :: document_scripts">
+</th:block>
+
+</html>

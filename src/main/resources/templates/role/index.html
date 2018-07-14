@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="ui/default :: document_head">
+</th:block>
+
+
+<body
+	th:with="
+    	pageTitle = '',
+    	contentTemplateFragment = 'page_content'
+    ">
+	<div th:replace="ui/default :: document_body">
+		<div th:fragment="page_content" id="roles-list-card" class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<h4 class="title" th:text="${pageTitle}"></h4>
+						<p class="category">List of the available roles on the
+							platform</p>
+						<div class="pull-right">
+							<a
+								th:replace="ui/buttons :: add_button (href = '/roles/create', btnTitle = 'New Role')"></a>
+						</div>
+					</div>
+					<div class="card-content table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Role</th>
+									<th>Last update</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="role : ${rolesList}">
+									<td th:text="${role.code}"></td>
+									<td th:text="${role.label}"></td>
+									<td th:unless="${role.updatedAt == null}"
+										th:text="${#dates.format(role.updatedAt)}"></td>
+									<td th:if="${role.updatedAt == null}">N/A</td>
+									<td><a th:href="@{/roles/edit/{id}(id=${role.id})}"
+										class="btn btn-inverse">EDIT</a></td>
+									<td><a
+										onclick="return confirm('Do you really want to proceed?')"
+										th:href="@{/roles/delete/{id}(id=${role.id})}" class="btn btn-inverse">DELETE</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<th:block th:include="ui/default :: document_scripts">
+</th:block>
+
+</html>

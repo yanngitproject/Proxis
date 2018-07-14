@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div>
+		<div th:fragment="page_content" id="user-creation-card" class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<p class="category" th:text="${formDescription}"></p>
+					</div>
+					<div class="card-content">
+						<form method="post" th:action="@{/register}"
+							th:object="${user}" autocomplete="off">
+
+							<div th:if="${confirmationMessage}" class="alert alert-success"
+								role="alert" th:text="${confirmationMessage}"></div>
+
+							<div th:if="${errorMessage}" class="alert alert-danger"
+								role="alert" th:text="${errorMessage}"></div>
+
+
+							<div th:if="${#fields.hasErrors('userEmail')}"
+								th:errors="*{userEmail}"
+								class="validation-message alert alert-danger" role="alert"></div>
+
+
+							<label>You are a </label> <select id="sel1"
+								th:field="*{userType}" name="type">
+								<option value="Patient">Patient</option>
+								<option value="Practitioner">Practitioner</option>
+							</select> 
+							
+							<label>Gender</label> <select id="sel1" th:field="*{userSex}"
+								name="gender">
+								<option value="Man">Man</option>
+								<option value="Woman">Woman</option>
+							</select>
+							
+							 <label>First Name</label> <input type="text" name="firstname"
+								th:field="*{userFirstName}" placeholder="Enter First Name"
+								required="true" /> 
+								
+							<label>Last Name</label> <input type="text"
+								name="lastname" th:field="*{userLastName}"
+								placeholder="Enter Last Name" required="true" /> 
+								
+							<label>Your Email </label> <input type="email" name="email" th:field="*{userEmail}"
+								id="InputEmail" aria-describedby="emailHelp"
+								placeholder="exemple@proxis.cm" required="true" />
+								
+						    <label>Your Phone Number</label> <input type="text" th:field="*{userPhoneNumber}"
+								name="phonenumber" placeholder="Example :00237699823156"
+								required="true" /> 
+								
+			
+							<input type="submit" class="btn btn-info" value="Submit" />
+
+
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>

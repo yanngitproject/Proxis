@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Set your Password</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+
+	<div>
+	<div>
+		<p>Set your Password</p>
+		<form th:if="!${invalidToken}" id="passwordForm"  th:action="@{/confirm}"
+			method="post">
+
+			<input type="hidden" name="token" th:value="${confirmationToken}" />
+
+			<input name="password" type="password" id="password"
+				placeholder="Password" /> <span></span> <input type="password"
+				class="form-control" id="signup-password-confirm"
+				placeholder="Confirm Password" name="ConfirmPassword"
+				data-fv-notempty="true"
+				data-fv-notempty-message="Please confirm password"
+				data-fv-identical="true" data-fv-identical-field="password"
+				data-fv-identical-message="Both passwords must be identical" /> <input
+				type="submit" class="btn btn-primary block full-width m-b"
+				value="Activate" />
+		</form>
+		
+		</div>
+
+		<div th:if="${successMessage}" class="alert alert-success"
+			role="alert" th:text="${successMessage}"></div>
+
+		<div th:if="${errorMessage}" class="alert alert-danger" role="alert"
+			th:text="${errorMessage}"></div>
+
+		<div th:if="${invalidToken}" class="alert alert-danger" role="alert"
+			th:text="${invalidToken}"></div>
+
+
+		<p>
+			<a th:href="login">Login page</a>
+		</p>
+	</div>
+</body>
+</html>
