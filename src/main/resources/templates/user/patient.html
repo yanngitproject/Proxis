@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>profil/patient</title>
+<title>patient</title>
 <link rel="stylesheet" type="text/css" href="../static/css/design.css"
 	th:href="@{/css/design.css}" />
 </head>
@@ -20,7 +20,7 @@
 	<div id="book" class="tabcontent"></div>
 
 	<div id="profil" class="tabcontent">
-		<form th:action="@{/UpdatePatient}" method="post" enctype="multipart/form-data">
+		<form th:action="@{/UpdatePatient}" method="post">
 
 			<fieldset>
 				<legend>Personnal Informations</legend>
@@ -75,9 +75,9 @@
 					</select>
 				</p>
 
-				<p>
-					<label>Upload your CNI : </label><input type="file" th:field="*{patient.cni}" name="cni" />
-				</p>
+<!-- 				<p> -->
+<!-- 					<label>Upload your CNI : </label><input type="file" th:field="*{patient.cni}" name="cni" /> -->
+<!-- 				</p> -->
 
 			</fieldset>
 
