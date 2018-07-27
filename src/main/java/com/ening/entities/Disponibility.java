@@ -16,9 +16,7 @@ public class Disponibility {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id_disponibility;
 	private String beginDate;
-	private String beginHour;
 	private String endDate;
-	private String endHour;
 	@ManyToOne
 	@JoinColumn(name = "id_practitioner")
 	private Practitioner practitioner;
@@ -27,6 +25,8 @@ public class Disponibility {
 	public Disponibility() {
 		super();
 	}
+	
+
 	public long getId_disponibility() {
 		return id_disponibility;
 	}
@@ -46,19 +46,6 @@ public class Disponibility {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public String getBeginHour() {
-		return beginHour;
-	}
-	public void setBeginHour(String beginHour) {
-		this.beginHour = beginHour;
-	}
-	public String getEndHour() {
-		return endHour;
-	}
-	public void setEndHour(String endHour) {
-		this.endHour = endHour;
-	}
-
 	
 	public Practitioner getPractitioner() {
 		return practitioner;

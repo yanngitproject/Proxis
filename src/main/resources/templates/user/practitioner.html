@@ -48,11 +48,8 @@
 		<a th:href="@{/logout}" style="float: right;">Logout</a>
 		<ul>
 			<li><a href="#profil">Profil</a></li>
-			<li><a href="#disponibilities">Disponibilities</a></li>
-			<li><a href="#consultations">Consultations</a></li>
 
 		</ul>
-
 
 
 		<div id="profil" class="tabcontent">
@@ -72,36 +69,37 @@
 						type="hidden" th:field="*{practitioner.resetToken}" /> <input
 						type="hidden" th:field="*{practitioner.userType}" />
 					<p>
-						<label title="Cameroon national order of medicine practitioner">Member of ONMC ? </label><input type="checkbox" th:field="*{practitioner.onmc}" /><br />
+						<label title="Cameroon national order of medicine practitioner">Member
+							of ONMC ? </label><input type="checkbox" th:value="${practitioner.onmc}"
+							th:field="*{practitioner.onmc}" /><br />
 					</p>
 
 					<p>
-					<label>You're a :  </label><select
+						<label>You're a : </label><select
 							th:field="*{practitioner.userGender}"><option
 								th:each="gender : ${genders}" th:value="${gender}"
 								th:text="${gender}"></option>
-						</select></p>
-						
-						<p>
+						</select>
+					</p>
+
+					<p>
 						<label>FirstName : </label><input type="text" class="form-control"
-							th:field="*{practitioner.userFirstName}" />
-					
-						<label>Last Name : </label><input type="text" class="form-control"
-							th:field="*{practitioner.userLastName}" />
-					
-						
+							th:field="*{practitioner.userFirstName}" /> <label>Last
+							Name : </label><input type="text" class="form-control"
+							th:field="*{practitioner.userLastName}"  />
+
+
 					</p>
 					<p>
 						<label>Birthday : </label><input type="date" class="form-control"
-							th:field="*{practitioner.userBirthdayDate}" />
+							th:field="*{practitioner.userBirthdayDate}"  />
 					</p>
 					<p>
 						<label>Email : </label><input class="form-control" type="email"
 							placeholder="Example : your@ening.cm"
-							th:field="*{practitioner.userEmail}" />
-					
-						<label>Phone Number : </label><input class="form-control"
-							type="text" th:field="*{practitioner.userPhoneNumber}" />
+							th:field="*{practitioner.userEmail}"   /> <label>Phone
+							Number : </label><input class="form-control" type="text"
+							th:field="*{practitioner.userPhoneNumber}"   />
 					</p>
 
 					<p>
@@ -125,7 +123,7 @@
 					<legend>Presentations</legend>
 
 					<textarea class="form-control" rows="2" cols="20"
-						th:field="*{practitioner.presentation}"
+						th:field="*{practitioner.presentation}"  th:text="${practitioner.presentation}"
 						placeholder="Describe and you on little lines..."></textarea>
 
 
@@ -135,14 +133,17 @@
 					<legend>Intervention</legend>
 
 					<p>
-						<input class="form-check-input" type="checkbox" th:field="*{practitioner.phoneIntervention}"
-							id="inlineCheckbox1" value="phone"> <label
+						<input class="form-check-input" type="checkbox"
+							th:field="*{practitioner.phoneIntervention}" id="inlineCheckbox1"
+							th:value="${practitioner.phoneIntervention}"> <label
 							class="form-check-label" for="inlineCheckbox1">Phone</label>
 					</p>
 					<p>
 
-						<input class="form-check-input" type="checkbox" th:field="*{practitioner.physicalIntervention}"
-							id="inlineCheckbox2" value="Physical"> <label
+						<input class="form-check-input" type="checkbox"
+							th:field="*{practitioner.physicalIntervention}"
+							id="inlineCheckbox2"
+							th:value="${practitioner.physicalIntervention}"> <label
 							class="form-check-label" for="inlineCheckbox2">Physical</label>
 					</p>
 
@@ -155,234 +156,55 @@
 
 					<p>
 						<input class="form-check-input" type="checkbox"
-							id="inlineCheckbox3" value="orange" th:field="*{practitioner.orangePayment}"> <label
-							class="form-check-label" for="inlineCheckbox3">Orange
-							Money</label> 
+							id="inlineCheckbox3" th:value="${practitioner.orangePayment}"
+							th:field="*{practitioner.orangePayment}"> 
+							
+							<label
+							class="form-check-label" for="inlineCheckbox3">ORANGE
+							MONEY</label> 
+							
+							
+							<input class="form-control" type="text"
+							placeholder="699823160" th:if="${practitioner.orangePayment}==true"
+							th:field="*{practitioner.orangeNumber}"   />
+						</p>
+						<p>	
 							
 							<input class="form-check-input" type="checkbox"
-							id="inlineCheckbox1" value="mtn" th:field="*{practitioner.mtnPayment}"> <label
-							class="form-check-label" for="inlineCheckbox2">MTN Money</label>
+							id="inlineCheckbox4" th:value="${practitioner.mtnPayment}"
+							th:field="*{practitioner.mtnPayment}">
+							
+							
+							 <label
+							class="form-check-label" for="inlineCheckbox4">MTN MONEY</label>
+							
+							<input th:if="${practitioner.mtnPayment}==true" class="form-control" type="text"
+							placeholder="677751255"
+							th:field="*{practitioner.mtnNumber}"   />
 
 					</p>
 				</fieldset>
 
-				<fieldset>
-					<legend>Career</legend>
+				
 
-					<div id="career" class="content">
-
-
-						<div class="form-row">
-
-							<div class="col-md-2">
-
-								<label>Current </label><input type="hidden"
-									th:field="*{experience0.date_begin}" /><label>Since</label> <input
-									class="form-control" type="number" min="1900" max="2099"
-									step="1" value="2016" th:field="*{experience0.date_end}" /> <input
-									type="text" class="form-control"
-									placeholder="Hospital,clinic,... name"
-									th:field="*{experience0.workplace}" /> <input type="text"
-									placeholder="Responsability" class="form-control"
-									th:field="*{experience0.position_held}" /> <label>Speciality
-									: </label> <select th:field="*{experience0.speciality}">
-									<option th:each="spec:${specialities}" th:value="${spec}"
-										th:text="${spec}"></option>
-
-								</select>
-
-							</div>
-
-						</div>
-						<div class="form-row">
-
-							<div class="col-md-2">
-
-								<label>Between </label><input type="number"
-									th:field="*{experience1.date_begin}" /><label> and </label> <input
-									class="form-control" type="number" min="1900" max="2099"
-									step="1" value="2016" th:field="*{experience1.date_end}" /> <input
-									type="text" class="form-control"
-									placeholder="Hospital,clinic,... name"
-									th:field="*{experience1.workplace}" /> <input type="text"
-									class="form-control" placeholder="Responsability"
-									th:field="*{experience1.position_held}" /> <label>Speciality
-									: </label> <select th:field="*{experience1.speciality}">
-									<option th:each="spec:${specialities}" th:value="${spec}"
-										th:text="${spec}"></option>
-
-								</select>
-
-							</div>
-						</div>
-						<div class="form-row">
-
-							<div class="col-md-2">
-
-								<label>Between </label><input type="number" class="form-control"
-									th:field="*{experience2.date_begin}" /><label> and </label> <input
-									class="form-control" type="number" min="1900" max="2099"
-									step="1" value="2016" th:field="*{experience2.date_end}" /> <input
-									type="text" class="form-control"
-									placeholder="Hospital,clinic,... name"
-									th:field="*{experience2.workplace}" /> <input type="text"
-									class="form-control" placeholder="Responsability"
-									th:field="*{experience2.position_held}" /> <label>Speciality
-									: </label> <select th:field="*{experience2.speciality}">
-									<option th:each="spec:${specialities}" th:value="${spec}"
-										th:text="${spec}"></option>
-
-								</select>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</fieldset>
-
-				<fieldset>
-					<legend>Degrees </legend>
-					<div id="degree" class="content">
-
-						<br />
-
-						<div class="form-row">
-							<div class="col-md-2">
-								<label>Year : </label><input class="form-control" type="number"
-									min="1900" max="2099" step="1" value="2018"
-									th:field="*{studie0.date}" /> <input class="form-control"
-									type="text" placeholder="School..."
-									th:field="*{studie0.school}" /> <label>Grade : </label> <select
-									th:field="*{studie0.grade}">
-									<option th:each="grd:${grades}" th:value="${grd}"
-										th:text="${grd}"></option>
-
-								</select> <label>Field : </label> <select
-									th:field="*{studie0.speciality}">
-									<option th:each="spec:${specialities}" th:value="${spec}"
-										th:text="${spec}"></option>
-
-								</select>
-
-							</div>
-
-						</div>
-
-						<div class="form-row">
-							<div class="col-md-2">
-								<label>Year : </label><input class="form-control" type="number"
-									min="1900" max="2099" step="1" value="2018"
-									th:field="*{studie1.date}" /> <input type="text"
-									class="form-control" placeholder="School..."
-									th:field="*{studie1.school}" /> <label>Grade : </label> <select
-									th:field="*{studie1.grade}">
-									<option th:each="grd:${grades}" th:value="${grd}"
-										th:text="${grd}"></option>
-
-								</select> <label>Field : </label> <select
-									th:field="*{studie1.speciality}">
-									<option th:each="spec:${specialities}" th:value="${spec}"
-										th:text="${spec}"></option>
-
-								</select>
-
-							</div>
-
-						</div>
-
-						<div class="form-row">
-							<div class="col-md-2">
-								<label>Year : </label><input type="number" class="form-control"
-									min="1900" max="2099" step="1" value="2018"
-									th:field="*{studie2.date}" /> <input class="form-control"
-									type="text" placeholder="School..."
-									th:field="*{studie2.school}" /> <label>Grade : </label> <select
-									th:field="*{studie2.grade}">
-									<option th:each="grd:${grades}" th:value="${grd}"
-										th:text="${grd}"></option>
-
-								</select> <label>Field : </label> <select
-									th:field="*{studie2.speciality}">
-									<option th:each="spec:${specialities}" th:value="${spec}"
-										th:text="${spec}"></option>
-
-								</select>
-
-							</div>
-
-						</div>
-
-
-
-					</div>
-
-				</fieldset>
-
+				
 
 				<input type="submit" value="Update profil">
 
 			</form>
+			<a th:href="@{disponibilities(id=${practitioner.userId})}"
+				class="btn btn-warning">Manage your disponibilities</a>
+				
+				<a th:href="@{consultations(id=${practitioner.userId})}"
+				class="btn btn-warning">Consultations</a>
+				
+				<a th:href="@{careers(id=${practitioner.userId})}"
+				class="btn btn-warning">Manage your career</a>
+				
+				<a th:href="@{degrees(id=${practitioner.userId})}"
+				class="btn btn-warning">Manage degrees</a>
 		</div>
 
-		<div id="disponibilities" class="tabcontent">
-			<div class="container">
-				<form method="post" action="@{/add_disponibilities}">
-					<div class='col-md-5'>
-						<div class="form-group">
-
-							<div class='input-group date' id='datetimepicker6'>
-								<input type='text' class="form-control" /> <span
-									class="input-group-addon"> <span
-									class="glyphicon glyphicon-calendar"></span>
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class='col-md-5'>
-						<div class="form-group">
-							<div class='input-group date' id='datetimepicker7'>
-								<input type='text' class="form-control" /> <span
-									class="input-group-addon"> <span
-									class="glyphicon glyphicon-calendar"></span>
-								</span>
-							</div>
-						</div>
-					</div>
-					<button type="submit" class="btn btn-success">ADD</button>
-				</form>
-
-				<br>
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Begin date</th>
-								<th scope="col">At</th>
-								<th scope="col">Date End</th>
-								<th scope="col">At</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="dispo : practitioner.disponiblities ">
-								<td th:text="${dispo.beginDate}"></td>
-								<td th:text="${dispo.beginHour}"></td>
-								<td th:text="${dispo.endDate}"></td>
-								<td th:text="${dispo.endHour}"></td>
-								<td><a
-									onclick="return confirm('are you sure about this action ?')"
-									th:href="@{{delete_disponibility(Id=${dispo.id_disponibility})}"
-									class="btn btn-danger">DELETE</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-		</div>
-		<div id="consultations" class="tabcontent"></div>
 	</div>
 	<div class="modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">

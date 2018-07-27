@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>careers</title>
+<link rel="stylesheet" type="text/css" href="../static/css/design.css"
+	th:href="@{/css/design.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.datetimepicker.css"
+	th:href="@{/css/bootstrap.datetimepicker.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.min.css"
+	th:href="@{/css/jquery-ui.min.css}" />
+
+
+<script src="../static/js/design.js" th:src="@{/js/design.js}"></script>
+<script src="../static/js/jquery-3.2.1.min.js"
+	th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script src="../static/js/jquery-ui.min.js"
+	th:src="@{/js/jquery-ui.min.js}"></script>
+<script src="../static/js/moment.js" th:src="@{/js/moment.js}"></script>
+<script src="../static/js/bootstrap.min.js"
+	th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/bootstrap.datetimepicker.js"
+	th:src="@{/js/bootstrap.datetimepicker.js}"></script>
+<script src="../static/js/dateCall.js" th:src="@{/js/dateCall.js}"></script>
+
+
+
+
+</head>
+<body>
+
+	<form method="post" action="@{/add_career}" >
+
+		<fieldset>
+			<legend>ADD NEW EXPERIENCE</legend>
+			<div class="row">
+				<div class="col-sm-2">
+					<input type="month" id="start" name="start"
+						min="2018-03" class="form-control">
+				</div>
+				<div class="col-sm-2">
+					<input type="month" id="end" name="end"
+						class="form-control">
+				</div>
+
+				<div class="col-sm-2">
+					<input type="text" class="form-control"
+						placeholder="Hospital or clinic name">
+				</div>
+
+				<div class="col-sm-2">
+					<input type="text" class="form-control" placeholder="Position held">
+				</div>
+
+				<div class="col-sm-2">
+					<select class="form-control"
+						th:field="*{experience.speciality}">
+						<option th:each="spec:${specialities}" th:value="${spec}"
+							th:text="${spec}"></option>
+
+					</select>
+				</div>
+				
+						<button type="submit" class="btn btn-success">ADD</button>
+				
+			</div>
+
+		</fieldset>
+
+
+	</form>
+	<fieldset>
+		<legend>LIST</legend>
+		<div id="career" class="content">
+			<div class="form-row">
+
+				<div class="col-md-2">
+
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Begin</th>
+									<th scope="col">End</th>
+									<th scope="col">Workplace</th>
+									<th scope="col">Position Held</th>
+									<th scope="col">Speciality</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="experience : ${practitioner.experiences} ">
+									<td th:text="${experience.date_begin}"></td>
+									<td th:text="${experience.date_end}"></td>
+									<td th:text="${experience.workplace}"></td>
+									<td th:text="${experience.position_held}"></td>
+									<td th:text="${experience.speciality}"></td>
+									<td><a
+										onclick="return confirm('are you sure about this action ?')"
+										th:href="@{delete_experience(id=${experience.id_experience})}"
+										class="btn btn-danger">DELETE</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</fieldset>
+
+
+
+	<div class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+</body>
+</html>

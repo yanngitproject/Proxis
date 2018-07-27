@@ -29,9 +29,12 @@ public class Practitioner extends User {
 	@Column(nullable = true)
 
 	private boolean orangePayment;
+	
+	private String orangeNumber;
 	@Column(nullable = true)
-
 	private boolean mtnPayment;
+	
+	private String mtnNumber;
 
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Studies> studies;
@@ -137,6 +140,43 @@ public class Practitioner extends User {
 		this.experiences = experiences;
 	}
 
+	public void addExperience(Experience experience) {
+
+		if (!experiences.contains(experience)) {
+
+			experiences.add(experience);
+		}
+
+	}
+
+	public void removeExperience(Experience experience) {
+
+		if (experiences.contains(experience)) {
+			experiences.remove(experience);
+		}
+
+	}
+
+	public void addStudie(Studies studie) {
+
+		if (!studies.contains(studie)) {
+
+			studies.add(studie);
+		}
+
+	}
+
+	public void removeStudie(Studies studie) {
+
+		if (studies.contains(studie)) {
+
+			studies.remove(studie);
+		}
+
+	}
+
+	
+
 	public int getOnmc() {
 		return onmc;
 	}
@@ -177,4 +217,21 @@ public class Practitioner extends User {
 		this.mtnPayment = mtnPayment;
 	}
 
+	public String getOrangeNumber() {
+		return orangeNumber;
+	}
+
+	public void setOrangeNumber(String orangeNumber) {
+		this.orangeNumber = orangeNumber;
+	}
+
+	public String getMtnNumber() {
+		return mtnNumber;
+	}
+
+	public void setMtnNumber(String mtnNumber) {
+		this.mtnNumber = mtnNumber;
+	}
+
+	
 }

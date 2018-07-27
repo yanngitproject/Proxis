@@ -1,8 +1,11 @@
 package com.ening.providers;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import com.ening.entities.Disponibility;
 import com.ening.entities.Patient;
 import com.ening.entities.User;
 
@@ -39,22 +42,49 @@ public interface Utilities {
 
 		return label + "_" + Utilities.randomNumericString(n);
 	}
-	
+
 	static String buildUserName(User u) {
 
-		return (u.getUserLastName().substring(0,1)+""+u.getUserFirstName().replace(" ", "")).toUpperCase();
+		return (u.getUserLastName().substring(0, 1) + "" + u.getUserFirstName().replace(" ", "")).toUpperCase();
 	}
+
 	static String buildPatientUserName(Patient u) {
 
-		return (u.getUserLastName().substring(0,1)+""+u.getUserFirstName().replace(" ", "")).toUpperCase();
-	}
-	
-	static String todayDate(){
-	    final 	Date today = new Date();
-		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");	
-		return sdf.format(today);
-		
+		return (u.getUserLastName().substring(0, 1) + "" + u.getUserFirstName().replace(" ", "")).toUpperCase();
 	}
 
-	
+	static String todayDate() {
+		final Date today = new Date();
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
+		return sdf.format(today);
+
+	}
+
+	static boolean slotExist(String dateBegin, String dateEnd, List<Disponibility> disponibilities)
+			throws ParseException {
+		final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm aaa");
+
+		Date begin = sdf.parse(dateBegin);
+		Date end = sdf.parse(dateEnd);
+		if (disponibilities != null) {
+
+			for (Disponibility dispo : disponibilities) {
+
+				if (begin.after(sdf.parse(dispo.getBeginDate())) && begin.before(sdf.parse(dispo.getBeginDate()))) {
+
+					return true;
+				}
+
+				if (end.after(sdf.parse(dispo.getBeginDate())) && end.before(sdf.parse(dispo.getBeginDate()))) {
+
+					return true;
+				}
+			}
+
+		}
+
+		return false;
+
+	}
+
 }
