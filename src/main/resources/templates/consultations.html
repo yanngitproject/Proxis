@@ -34,18 +34,20 @@
 </head>
 <body>
 
-<div><a th:href="@{disponibilities(id=${practitioner.userId})}"
-				class="btn btn-warning">Manage your disponibilities</a>
-				
-				<a th:href="@{consultations(id=${practitioner.userId})}"
-				class="btn btn-warning">Consultations</a>
-				
-				<a th:href="@{careers(id=${practitioner.userId})}"
-				class="btn btn-warning">Manage your career</a>
-				
-				<a th:href="@{degrees(id=${practitioner.userId})}"
-				class="btn btn-warning">Manage degrees</a></div>
+	<div th:replace="ui/header :: header"></div>
 
-	
+
+	<div>
+		<a th:href="@{disponibilities(id=${practitioner.userId})}"
+			class="btn btn-warning">Manage your disponibilities</a> <a
+			th:href="@{consultations(id=${practitioner.userId})}"
+			class="btn btn-warning">Consultations</a> <a
+			th:href="@{careers(id=${practitioner.userId})}"
+			class="btn btn-warning">Manage your career</a> <a
+			th:href="@{degrees(id=${practitioner.userId})}"
+			class="btn btn-warning">Manage degrees</a>
+	</div>
+
+
 </body>
 </html>

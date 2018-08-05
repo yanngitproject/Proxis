@@ -10,10 +10,10 @@ import com.ening.entities.Disponibility;
 import com.ening.entities.Practitioner;
 
 public interface DisponibiltyRepository extends JpaRepository<Disponibility	, Long> {
-	
+
     @Modifying
     @Transactional
-    @Query("delete from Disponibility d where d.practitioner = ?1")
-	void DeleteByPractitioner(Practitioner practitioner);
+    @Query(value="delete from disponibilities  where id_practitioner = ?1 and id_event = ?2",nativeQuery = true)
+	void DeleteWithPractitionerAndId_event(long id_practitioner ,long id_event);
 
 }

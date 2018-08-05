@@ -2,10 +2,14 @@ package com.ening.providers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
-import com.ening.entities.Disponibility;
 import com.ening.entities.Patient;
 import com.ening.entities.User;
 
@@ -60,31 +64,49 @@ public interface Utilities {
 
 	}
 
-	static boolean slotExist(String dateBegin, String dateEnd, List<Disponibility> disponibilities)
-			throws ParseException {
-		final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm aaa");
+	static List<Date> getDateBetween(Date begin, Date end) {
 
-		Date begin = sdf.parse(dateBegin);
-		Date end = sdf.parse(dateEnd);
-		if (disponibilities != null) {
+		List<Date> dates = new ArrayList<Date>();
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(begin);
 
-			for (Disponibility dispo : disponibilities) {
-
-				if (begin.after(sdf.parse(dispo.getBeginDate())) && begin.before(sdf.parse(dispo.getBeginDate()))) {
-
-					return true;
-				}
-
-				if (end.after(sdf.parse(dispo.getBeginDate())) && end.before(sdf.parse(dispo.getBeginDate()))) {
-
-					return true;
-				}
-			}
-
+		while (calendar.getTime().before(end)) {
+			Date dateBetween = calendar.getTime();
+			dates.add(dateBetween);
+			calendar.add(Calendar.DATE, 1);
 		}
 
-		return false;
+		dates.add(end);
 
+		return dates;
+
+	}
+
+	static Date setStringToDateWithoutHour(String s) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = sdf.parse(s);
+		return date;
+	}
+
+	static List<String> getParsesListFromJSON(List<String> myList) {
+
+		List<String> newList = new ArrayList<>(myList.size());
+		for (String s : myList) {
+
+			newList.add(s.replace("\"", "").replace("[", "").replace("]", ""));
+		}
+
+		return newList;
+
+	}
+
+	static String getValideDate(String s) throws ParseException {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM-dd-yyyy", Locale.ENGLISH);
+
+		Date date = sdf.parse(s.substring(4, 15).replace(" ", "-"));
+		
+		return  new SimpleDateFormat("yyyy-MM-dd").format(date) ;
 	}
 
 }

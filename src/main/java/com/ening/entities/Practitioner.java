@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "practitioners")
 public class Practitioner extends User {
@@ -35,11 +37,13 @@ public class Practitioner extends User {
 	private boolean mtnPayment;
 	
 	private String mtnNumber;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Studies> studies;
+	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Experience> experiences;
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "practitioner_payment", joinColumns = {
 			@JoinColumn(name = "id_practitioner", nullable = false, updatable = false) }, inverseJoinColumns = {
@@ -47,16 +51,16 @@ public class Practitioner extends User {
 	private List<Payment> payments;
 	private int experiences_years;
 	private double price;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Disponibility> disponibilities;
-
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "practitioner_patient", joinColumns = {
 			@JoinColumn(name = "id_practitioner", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id_patient", nullable = false, updatable = false) })
 	private List<Patient> patients;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Consultation> consultations;
 

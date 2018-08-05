@@ -6,7 +6,11 @@ import java.util.List;
 
 public class Constants {
 
-	public static final List<String> Genders = Collections.unmodifiableList(Arrays.asList("MAN", "WOMAN"));
+	public static final List<String> genders = Collections.unmodifiableList(Arrays.asList("MAN", "WOMAN"));
+	public static final List<String> categories = Collections.unmodifiableList(Arrays.asList("CALL", "PHYSICAL"));
+	public static final List<String> slots = Collections.unmodifiableList(Arrays.asList("18:00-22:00", "22:01-00:00","00:01-03:00","03:01-06:00"));
+
+
 	public static final List<String> bloodsGroup = Collections
 			.unmodifiableList(Arrays.asList("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"));
 

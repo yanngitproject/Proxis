@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div id="sidebar-wrapper" th:fragment="sidebar">
+	<ul class="sidebar-nav">
+		<li class="sidebar-brand"><a href="#">MANAGEMENT</a></li>
+		<li><a th:href="@{/}">HOME</a></li>
+		<li><a th:href="@{practitioner(id=${practitioner.userId})}">MY PROFIL</a></li>
+		<li><a th:href="@{disponibilities(id=${practitioner.userId})}">DISPONIBILITIES</a></li>
+		<li><a th:href="@{consultations(id=${practitioner.userId})}">CONSULTATIONS</a></li>
+		<li><a th:href="@{careers(id=${practitioner.userId})}">CAREERS</a></li>
+		<li><a th:href="@{degrees(id=${practitioner.userId})}">DEGREES</a></li>
+		
+	</ul>
+</div>
+
+
+</html>

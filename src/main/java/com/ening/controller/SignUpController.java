@@ -81,7 +81,7 @@ public class SignUpController {
 	public String registerPage(Model model) {
 		User user = new User();
 		model.addAttribute("user", user);
-		model.addAttribute("genders", Constants.Genders);
+		model.addAttribute("genders", Constants.genders);
 		return userRegisterTemplate;
 	}
 

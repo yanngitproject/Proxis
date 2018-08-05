@@ -36,7 +36,7 @@ public class PractitionerController {
 		model.addAttribute("practitioner", practitioner);
 		model.addAttribute("doualaCities", Constants.doualaCities);
 		model.addAttribute("yaoundeCities", Constants.yaoundeCities);
-		model.addAttribute("genders", Constants.Genders);
+		model.addAttribute("genders", Constants.genders);
 		model.addAttribute("bloods", Constants.bloodsGroup);
 	
 		return dashboardPracticeTemplate;

@@ -34,18 +34,20 @@
 </head>
 <body>
 
-	<form method="post" action="@{/add_career}" >
+	<div th:replace="ui/header :: header"></div>
+
+
+	<form method="post" action="@{/add_career}">
 
 		<fieldset>
 			<legend>ADD NEW EXPERIENCE</legend>
 			<div class="row">
 				<div class="col-sm-2">
-					<input type="month" id="start" name="start"
-						min="2018-03" class="form-control">
+					<input type="month" id="start" name="start" min="2018-03"
+						class="form-control">
 				</div>
 				<div class="col-sm-2">
-					<input type="month" id="end" name="end"
-						class="form-control">
+					<input type="month" id="end" name="end" class="form-control">
 				</div>
 
 				<div class="col-sm-2">
@@ -58,16 +60,15 @@
 				</div>
 
 				<div class="col-sm-2">
-					<select class="form-control"
-						th:field="*{experience.speciality}">
+					<select class="form-control" th:field="*{experience.speciality}">
 						<option th:each="spec:${specialities}" th:value="${spec}"
 							th:text="${spec}"></option>
 
 					</select>
 				</div>
-				
-						<button type="submit" class="btn btn-success">ADD</button>
-				
+
+				<button type="submit" class="btn btn-success">ADD</button>
+
 			</div>
 
 		</fieldset>

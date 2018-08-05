@@ -34,6 +34,9 @@
 </head>
 <body>
 
+	<div th:replace="ui/header :: header"></div>
+
+
 	<form method="post" action="@{/add_career}">
 
 		<fieldset>
@@ -113,16 +116,15 @@
 
 	</fieldset>
 
-<div><a th:href="@{disponibilities(id=${practitioner.userId})}"
-				class="btn btn-warning">Manage your disponibilities</a>
-				
-				<a th:href="@{consultations(id=${practitioner.userId})}"
-				class="btn btn-warning">Consultations</a>
-				
-				<a th:href="@{careers(id=${practitioner.userId})}"
-				class="btn btn-warning">Manage your career</a>
-				
-				</div>
+	<div>
+		<a th:href="@{disponibilities(id=${practitioner.userId})}"
+			class="btn btn-warning">Manage your disponibilities</a> <a
+			th:href="@{consultations(id=${practitioner.userId})}"
+			class="btn btn-warning">Consultations</a> <a
+			th:href="@{careers(id=${practitioner.userId})}"
+			class="btn btn-warning">Manage your career</a>
+
+	</div>
 
 
 	<div class="modal" tabindex="-1" role="dialog">
@@ -147,7 +149,7 @@
 		</div>
 	</div>
 
-	
+
 
 </body>
 </html>
