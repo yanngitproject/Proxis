@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ening.entities.Experience;
 import com.ening.entities.Practitioner;
+import com.ening.entities.Studies;
 import com.ening.providers.Constants;
 import com.ening.providers.Utilities;
 import com.ening.repositories.PractitionerRepository;
@@ -38,6 +40,10 @@ public class PractitionerController {
 		model.addAttribute("yaoundeCities", Constants.yaoundeCities);
 		model.addAttribute("genders", Constants.genders);
 		model.addAttribute("bloods", Constants.bloodsGroup);
+		model.addAttribute("experience",new Experience());
+		model.addAttribute("studie",new Studies());
+		model.addAttribute("specialities", Constants.specialities);
+		model.addAttribute("grades", Constants.grades);
 	
 		return dashboardPracticeTemplate;
 

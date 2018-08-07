@@ -18,24 +18,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "practitioners")
 public class Practitioner extends User {
 
-	private String presentation;
-	private String current_activity;
-	@Column(nullable = true)
-	private int onmc;
-	@Column(nullable = true)
-
-	private boolean phoneIntervention;
-	@Column(nullable = true)
-
-	private boolean physicalIntervention;
-	@Column(nullable = true)
-
-	private boolean orangePayment;
-	
+	private String idOnmc;
 	private String orangeNumber;
-	@Column(nullable = true)
-	private boolean mtnPayment;
-	
 	private String mtnNumber;
 	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
@@ -78,22 +62,6 @@ public class Practitioner extends User {
 
 	public void setExperiences_years(int experiences_years) {
 		this.experiences_years = experiences_years;
-	}
-
-	public String getCurrent_activity() {
-		return current_activity;
-	}
-
-	public void setCurrent_activity(String current_activity) {
-		this.current_activity = current_activity;
-	}
-
-	public String getPresentation() {
-		return presentation;
-	}
-
-	public void setPresentation(String presentation) {
-		this.presentation = presentation;
 	}
 
 	public double getPrice() {
@@ -179,47 +147,6 @@ public class Practitioner extends User {
 
 	}
 
-	
-
-	public int getOnmc() {
-		return onmc;
-	}
-
-	public void setOnmc(int onmc) {
-		this.onmc = onmc;
-	}
-
-	public boolean isPhoneIntervention() {
-		return phoneIntervention;
-	}
-
-	public void setPhoneIntervention(boolean phoneIntervention) {
-		this.phoneIntervention = phoneIntervention;
-	}
-
-	public boolean isPhysicalIntervention() {
-		return physicalIntervention;
-	}
-
-	public void setPhysicalIntervention(boolean physicalIntervention) {
-		this.physicalIntervention = physicalIntervention;
-	}
-
-	public boolean isOrangePayment() {
-		return orangePayment;
-	}
-
-	public void setOrangePayment(boolean orangePayment) {
-		this.orangePayment = orangePayment;
-	}
-
-	public boolean isMtnPayment() {
-		return mtnPayment;
-	}
-
-	public void setMtnPayment(boolean mtnPayment) {
-		this.mtnPayment = mtnPayment;
-	}
 
 	public String getOrangeNumber() {
 		return orangeNumber;
@@ -235,6 +162,14 @@ public class Practitioner extends User {
 
 	public void setMtnNumber(String mtnNumber) {
 		this.mtnNumber = mtnNumber;
+	}
+
+	public String getIdOnmc() {
+		return idOnmc;
+	}
+
+	public void setIdOnmc(String idOnmc) {
+		this.idOnmc = idOnmc;
 	}
 
 	

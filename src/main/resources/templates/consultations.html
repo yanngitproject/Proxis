@@ -26,7 +26,12 @@
 	th:src="@{/js/bootstrap.min.js}"></script>
 <script src="../static/js/bootstrap.datetimepicker.js"
 	th:src="@{/js/bootstrap.datetimepicker.js}"></script>
-<script src="../static/js/dateCall.js" th:src="@{/js/dateCall.js}"></script>
+
+<link rel="stylesheet" type="text/css" href="../static/css/index.css"
+	th:href="@{/css/index.css}" />
+<link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -35,19 +40,12 @@
 <body>
 
 	<div th:replace="ui/header :: header"></div>
+	<div th:replace="ui/sidebar :: sidebar"></div>
 
 
-	<div>
-		<a th:href="@{disponibilities(id=${practitioner.userId})}"
-			class="btn btn-warning">Manage your disponibilities</a> <a
-			th:href="@{consultations(id=${practitioner.userId})}"
-			class="btn btn-warning">Consultations</a> <a
-			th:href="@{careers(id=${practitioner.userId})}"
-			class="btn btn-warning">Manage your career</a> <a
-			th:href="@{degrees(id=${practitioner.userId})}"
-			class="btn btn-warning">Manage degrees</a>
-	</div>
-
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+	<script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
 
 </body>
 </html>
