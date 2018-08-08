@@ -1,4 +1,4 @@
-package com.ening.controller;
+package com.ening.restcontroller;
 
 import java.text.ParseException;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.ening.repositories.DisponibiltyRepository;
 import com.ening.repositories.PractitionerRepository;
 
 @org.springframework.web.bind.annotation.RestController
-public class RestController {
+public class DisponibilityRestController {
 
 	@Autowired
 	PractitionerRepository practitionerRepository;

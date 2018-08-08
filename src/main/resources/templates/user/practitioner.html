@@ -17,8 +17,6 @@
 
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-<link rel="stylesheet"
-	href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.3/dist/css/bootstrap-material-design.min.css">
 
 
 <script src="../static/js/jquery-3.2.1.min.js"
@@ -36,10 +34,10 @@
 
 
 
-	<div class="container">
+	<div class="container" style="margin-left: 15%; padding-right: 150px;">
 		<div class="row">
-			<div class="col-sm-10">
-				<h1>User name</h1>
+			<div style="float: left;">
+				<h4 th:text="${practitioner.userName}">User name</h4>
 			</div>
 		</div>
 		<div class="row">
@@ -68,10 +66,10 @@
 
 
 				<div class="tab-content">
-					<div class="tab-pane active" id="personal">
+					<div class="tab-pane active" id="personal" style="text-align: left;">
 						<hr>
 						<form class="form" th:action="@{/UpdatePractitioner}"
-							method="post" enctype="multipart/form-data">
+							method="post" enctype="multipart/form-data" >
 							<input type="hidden" th:field="*{practitioner.userId}" /> <input
 								type="hidden" th:field="*{practitioner.userName}" /> <input
 								type="hidden" th:field="*{practitioner.enable}" /> <input
@@ -85,14 +83,16 @@
 							<div class="form-group">
 
 								<div class="col-xs-12">
-									<label title="Cameroon national order of medicine practitioner">National order of doctor ID :  </label><input type="text"
+									<label title="Cameroon national order of medicine practitioner">National
+										order of doctor ID *: </label><input type="text"
 										th:value="${practitioner.idOnmc}"
-										th:field="*{practitioner.idOnmc}" />
+										th:field="*{practitioner.idOnmc}" style="background: cyan;"
+										required />
 								</div>
 							</div>
 							<div class="form-group">
 
-								<div class="col-xs-12">
+								<div class="col-xs-6">
 									<label>You're a : </label><select class="form-control"
 										th:field="*{practitioner.userGender}"><option
 											th:each="gender : ${genders}" th:value="${gender}"
@@ -101,7 +101,7 @@
 								</div>
 							</div>
 
-							
+
 							<div class="form-group">
 								<div class="col-xs-6">
 									<label>FirstName : </label><input type="text"
@@ -115,18 +115,17 @@
 										class="form-control" th:field="*{practitioner.userLastName}" />
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 
 								<div class="col-xs-6">
-									<input type="text"
-										class="form-control" name="phone" id="phone"
-										placeholder="enter phone"
+									<label>PHONE : </label><input type="text" class="form-control"
+										name="phone" id="phone" placeholder="enter phone"
 										th:field="*{practitioner.userPhoneNumber}"
 										title="enter your phone number if any.">
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 
 								<div class="col-xs-6">
@@ -147,12 +146,10 @@
 							<div class="form-group">
 								<div class="col-xs-12">
 									<br>
-									<button class="btn btn-lg btn-success" type="submit">
+									<button class="btn btn-block btn-success" type="submit">
 										<i class="glyphicon glyphicon-ok-sign"></i> Save
 									</button>
-									<button class="btn btn-lg" type="reset">
-										<i class="glyphicon glyphicon-repeat"></i> Reset
-									</button>
+
 								</div>
 							</div>
 						</form>
@@ -162,22 +159,24 @@
 					</div>
 					<!--/tab-pane-->
 					<div class="tab-pane" id="degrees">
-						<form method="post" action="@{/add_career}">
+						<form method="post"
+							th:action="@{/add_studie(id=${practitioner.userId})}">
+
 
 							<div class="form-group">
-								<div class="col-xs-6">
+								<div class="col-sm-6">
 									<input type="date" id="start" name="start" min="1900-01"
 										class="form-control" th:field="*{studie.date}">
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-xs-6">
+								<div class="col-sm-6">
 									<input type="text" id="end" name="end" class="form-control"
 										placeholder="School name" th:field="*{studie.school}">
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-xs-6">
+								<div class="col-sm-6">
 									<select class="form-control" th:field="*{studie.speciality}">
 										<option th:each="spec:${specialities}" th:value="${spec}"
 											th:text="${spec}"></option>
@@ -186,66 +185,71 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-xs-6">
-									<select th:field="*{studie.grade}">
+								<div class="col-sm-6">
+									<select th:field="*{studie.grade}" class="form-control">
 										<option th:each="grd:${grades}" th:value="${grd}"
 											th:text="${grd}"></option>
 
 									</select>
 								</div>
 							</div>
-							<button class="btn btn-lg btn-success" type="submit">
-								<i class="glyphicon glyphicon-ok-sign"></i> Save
-							</button>
+							<div class="form-group">
+								<div class="col-sm-6">
+									<br>
+									<button class="btn btn-blg btn-success" type="submit">
+										<i class="glyphicon glyphicon-ok-sign"></i> Save
+									</button>
+								</div>
+
+							</div>
+
 
 
 
 						</form>
 
 						<div>
-							<fieldset>
-								<legend>List</legend>
-								<div id="degree" class="content">
 
-									<br />
+							<div id="degree" class="content">
 
-									<div class="form-row">
-										<div class="col-md-2">
-											<div class="table-responsive">
-												<table class="table">
-													<thead>
-														<tr>
-															<th scope="col">Date</th>
-															<th scope="col">School</th>
-															<th scope="col">Speciality</th>
-															<th scope="col">Grade</th>
-															<th scope="col"></th>
+								<br />
 
-														</tr>
-													</thead>
-													<tbody>
-														<tr th:each="studie : ${practitioner.studies} ">
-															<td th:text="${studie.date}"></td>
-															<td th:text="${studie.school}"></td>
-															<td th:text="${studie.speciality}"></td>
-															<td th:text="${studie.grade}"></td>
-															<td><a
-																onclick="return confirm('are you sure about this action ?')"
-																th:href="@{{delete_studie(id=${studie.id_studies})}"
-																class="btn btn-danger">DELETE</a></td>
-														</tr>
+								<div class="form-row">
+									<div class="col-md-10">
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th scope="col">Date</th>
+														<th scope="col">School</th>
+														<th scope="col">Speciality</th>
+														<th scope="col">Grade</th>
+														<th scope="col"></th>
 
-													</tbody>
-												</table>
-											</div>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="studie : ${practitioner.studies} ">
+														<td th:text="${studie.date}"></td>
+														<td th:text="${studie.school}"></td>
+														<td th:text="${studie.speciality}"></td>
+														<td th:text="${studie.grade}"></td>
+														<td><a onclick="deleteRow()"
+															th:href="@{/delete_studie(id=${studie.id_studies})}"
+															class="btn btn-danger">DELETE</a></td>
+													</tr>
+
+												</tbody>
+											</table>
 										</div>
-
-
 									</div>
+
 
 								</div>
 
-							</fieldset>
+							</div>
+
+
 
 						</div>
 
@@ -255,28 +259,37 @@
 
 
 						<hr>
-						<form method="post" action="@{/add_career}">
+						<form method="post"
+							th:action="@{/add_experience(id=${practitioner.userId})}">
 
-							<div class="row">
-								<div class="col-sm-2">
-									<input type="month" id="start" name="start" min="2018-03"
-										class="form-control">
+							<div class="form-group">
+								<div class="col-sm-6">
+									<input type="date" id="start" name="start" min="2018-03"
+										class="form-control" th:field="*{experience.date_begin}">
 								</div>
-								<div class="col-sm-2">
-									<input type="month" id="end" name="end" class="form-control">
+							</div>
+							<div class="form-group">
+								<div class="col-sm-6">
+									<input type="date" id="end" name="end" class="form-control"
+										th:field="*{experience.date_end}">
 								</div>
-
-								<div class="col-sm-2">
+							</div>
+							<div class="form-group">
+								<div class="col-sm-6">
 									<input type="text" class="form-control"
-										placeholder="Hospital or clinic name">
+										placeholder="Hospital or clinic name"
+										th:field="*{experience.workplace}">
 								</div>
-
-								<div class="col-sm-2">
+							</div>
+							<div class="form-group">
+								<div class="col-sm-6">
 									<input type="text" class="form-control"
-										placeholder="Position held">
+										placeholder="Position held"
+										th:field="*{experience.position_held}">
 								</div>
-
-								<div class="col-sm-2">
+							</div>
+							<div class="form-group">
+								<div class="col-sm-6">
 									<select class="form-control"
 										th:field="*{experience.speciality}">
 										<option th:each="spec:${specialities}" th:value="${spec}"
@@ -284,60 +297,60 @@
 
 									</select>
 								</div>
-
-								<button class="btn btn-lg btn-success" type="submit">
-									<i class="glyphicon glyphicon-ok-sign"></i> Save
-								</button>
-
 							</div>
-
-
+							<div class="form-group">
+								<div class="col-sm-6">
+									<br>
+									<button class="btn btn-lg btn-success" type="submit">
+										<i class="glyphicon glyphicon-ok-sign"></i> Save
+									</button>
+								</div>
+							</div>
 
 						</form>
 						<div>
-							<fieldset>
-								<legend>LIST</legend>
-								<div id="career" class="content">
-									<div class="form-row">
 
-										<div class="col-md-2">
+							<div id="career" class="content">
+								<div class="form-row">
 
-											<div class="table-responsive">
-												<table class="table">
-													<thead>
-														<tr>
-															<th scope="col">Begin</th>
-															<th scope="col">End</th>
-															<th scope="col">Workplace</th>
-															<th scope="col">Position Held</th>
-															<th scope="col">Speciality</th>
-															<th scope="col"></th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr th:each="experience : ${practitioner.experiences} ">
-															<td th:text="${experience.date_begin}"></td>
-															<td th:text="${experience.date_end}"></td>
-															<td th:text="${experience.workplace}"></td>
-															<td th:text="${experience.position_held}"></td>
-															<td th:text="${experience.speciality}"></td>
-															<td><a
-																onclick="return confirm('are you sure about this action ?')"
-																th:href="@{delete_experience(id=${experience.id_experience})}"
-																class="btn btn-danger">DELETE</a></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
+									<div class="col-md-10">
 
-
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th scope="col">Begin</th>
+														<th scope="col">End</th>
+														<th scope="col">Workplace</th>
+														<th scope="col">Position Held</th>
+														<th scope="col">Speciality</th>
+														<th scope="col"></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="experience : ${practitioner.experiences} ">
+														<td th:text="${experience.date_begin}"></td>
+														<td th:text="${experience.date_end}"></td>
+														<td th:text="${experience.workplace}"></td>
+														<td th:text="${experience.position_held}"></td>
+														<td th:text="${experience.speciality}"></td>
+														<td><a
+															onclick="return confirm('are you sure about this action ?')"
+															th:href="@{/delete_experience(id=${experience.id_experience})}"
+															class="btn btn-danger">DELETE</a></td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
+
 
 									</div>
 
 								</div>
 
-							</fieldset>
+							</div>
+
+
 						</div>
 					</div>
 

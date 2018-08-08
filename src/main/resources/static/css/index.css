@@ -3,10 +3,11 @@ body { background-color: #f5f7fa; font-family:'Roboto'; text-align:center; }
 h1 { margin:50px auto;}
 .zoom {
   position: fixed;
-  bottom: 45px;
+/*   bottom: 45px; */
   left: 40px; /*add*/
 /*   right: 24px; */
   height: 70px;
+  top:5px;	
 }
 
 .zoom-fab {
@@ -58,14 +59,25 @@ h1 { margin:50px auto;}
 
 .zoom-menu {
 	position: absolute;
-    left: 70px;
+    /* left: 70px; */
     /* left: auto; */
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
-    width: 500px;
+    /* width: 500px; */
     list-style: none;
     text-align: right;
+    /* position: absolute; */
+    /* right: 70px; */
+    /* left: auto; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* height: 100%; */
+    /* width: 500px; */
+    /* list-style: none; */
+    /* text-align: right; */
+    top: 150px;
+    right: 10px;
 /*   position: absolute; */
 /*   right: 70px; */
 /*   left: auto; */
@@ -108,3 +120,9 @@ h1 { margin:50px auto;}
 }
 
 .scale-transition.scale-in { transform: scale(1); }
+
+.navbar-default {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    height: 110px;
+}

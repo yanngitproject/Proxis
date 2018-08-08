@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="studies")
-public class Studies {
+public class Studie {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,6 +61,11 @@ public class Studies {
 	}
 	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
+	}
+	@Override
+	public String toString() {
+		return "Studie [id_studies=" + id_studies + ", date=" + date + ", school=" + school + ", speciality="
+				+ speciality + ", grade=" + grade + ", practitioner=" + practitioner + "]";
 	}
 
 	

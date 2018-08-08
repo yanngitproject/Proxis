@@ -23,7 +23,7 @@ public class Practitioner extends User {
 	private String mtnNumber;
 	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
-	private List<Studies> studies;
+	private List<Studie> studies;
 	@JsonIgnore
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Experience> experiences;
@@ -48,11 +48,11 @@ public class Practitioner extends User {
 	@OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
 	private List<Consultation> consultations;
 
-	public List<Studies> getStudies() {
+	public List<Studie> getStudies() {
 		return studies;
 	}
 
-	public void setStudies(List<Studies> studies) {
+	public void setStudies(List<Studie> studies) {
 		this.studies = studies;
 	}
 
@@ -129,7 +129,7 @@ public class Practitioner extends User {
 
 	}
 
-	public void addStudie(Studies studie) {
+	public void addStudie(Studie studie) {
 
 		if (!studies.contains(studie)) {
 
@@ -138,7 +138,7 @@ public class Practitioner extends User {
 
 	}
 
-	public void removeStudie(Studies studie) {
+	public void removeStudie(Studie studie) {
 
 		if (studies.contains(studie)) {
 
