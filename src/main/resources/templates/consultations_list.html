@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Consultations</title>
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.datetimepicker.css"
+	th:href="@{/css/bootstrap.datetimepicker.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.min.css"
+	th:href="@{/css/jquery-ui.min.css}" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/sidebar-menu.css"
+	th:href="@{/css/sidebar-menu.css}" />
+
+
+<script src="../static/js/jquery-3.2.1.min.js"
+	th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script src="../static/js/jquery-ui.min.js"
+	th:src="@{/js/jquery-ui.min.js}"></script>
+<script src="../static/js/bootstrap.min.js"
+	th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/bootstrap.datetimepicker.js"
+	th:src="@{/js/bootstrap.datetimepicker.js}"></script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+	<div th:replace="ui/sidebar :: sidebar"></div>
+
+	<div class="content">
+		<div class="form-row">
+
+			<div class="col-md-10">
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">State</th>
+								<th scope="col">Patient</th>		
+								<th scope="col">Mode</th>
+								<th scope="col">date</th>
+								<th scope="col">City</th>
+								<th scope="col">Symptoms</th>
+								<th scope="col">Prescriptions</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="consultation : ${practitioner.consultations} ">
+
+								<td th:text="${consultation.status}"></td>
+							<td th:text="${consultation.practitioner.userLastName}"></td>
+								
+								<td th:text="${consultation.categorie}"></td>
+								<td th:text="${consultation.date}"></td>
+								<td th:text="${consultation.city}"></td>
+								<td th:text="${consultation.declared_symptoms}"></td>
+								<td th:text="${consultation.prescriptions}"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<script src="../static/js/sidebar-menu.js"
+		th:src="@{/js/sidebar-menu.js}"></script>
+	<script>
+    $.sidebarMenu($('.sidebar-menu'))
+  </script>
+
+</body>
+</html>

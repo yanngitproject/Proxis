@@ -15,10 +15,14 @@
 	href="../static/css/jquery-ui.min.css"
 	th:href="@{/css/jquery-ui.min.css}" />
 
-<link rel="stylesheet" type="text/css"
-	href="../static/css/index.css"
-	th:href="@{/css/index.css}" />
-	 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
 
 <link rel="stylesheet" type="text/css"
 	href="../static/css/bootstrap-datepicker.min.css"
@@ -30,6 +34,11 @@
 <link rel="stylesheet" type="text/css"
 	href="../static/css/bootstrap-select.min.css"
 	th:href="@{/css/bootstrap-select.min.css}" />
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/sidebar-menu.css"
+	th:href="@{/css/sidebar-menu.css}" />
+
 
 
 <script src="../static/js/jquery-3.2.1.min.js"
@@ -49,21 +58,20 @@
 
 
 </head>
-<body>
-	<div th:replace="ui/header :: header"></div>
-		<div th:replace="ui/sidebar:: sidebar"></div>
-	
+<body style="background-color: #222d32 !important;">
+	<div th:replace="ui/sidebar:: sidebar"></div>
 
-	<div id="wrapper" >
+
+	<div id="wrapper">
 
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 
-				
+
 				<div id="calendar"></div>
 				<div class="modal modal-fade" id="event-modal">
 					<div class="modal-dialog">
-						<div class="modal-content">
+						<div class="modal-content" style="background-color: #222d32;color:white;">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
 									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
@@ -251,7 +259,8 @@
 								slots : i.slots,
 								cities : i.cities,
 								startDate : new Date(i.startDate),
-								endDate : new Date(i.endDate)
+								endDate : new Date(i.endDate),
+								status : i.status
 							};
 				
 				
@@ -269,20 +278,20 @@
 									if (idx < currentMonth) {
 										$(this).css("display", "none");
 									}
-									if (idx > currentMonth + 1) {
+									if (idx > currentMonth + 2) {
 										$(this).css("display", "none");
 									}
 								});
 							},
 							minDate : new Date(currentYear, new Date().getMonth(), new Date().getDay() - 1),
-							maxDate : new Date(currentYear, new Date().getMonth() + 1, 28),
+							maxDate : new Date(currentYear, new Date().getMonth() + 2, 28),
 							enableContextMenu : true,
 							enableRangeSelection : true,
 							contextMenuItems : [
-								{
-									text : 'Update',
-									click : editEvent
-								},
+// 								{
+// 									text : 'Update',
+// 									click : editEvent
+// 								},
 								{
 									text : 'Delete',
 									click : deleteEvent
@@ -302,6 +311,7 @@
 										content += '<div class="event-tooltip-content">'
 											+ '<div class="event-slots" style="color:grey">' + e.events[i].slots + '</div>'
 											+ '<div class="event-categories">' + e.events[i].categories + '</div>'
+											+'<div  class = "event-status">' + e.events[i].status + '</div>'
 											+ '</div>';
 									}
 				
@@ -340,10 +350,12 @@
 
 	</div>
 
+	<script src="../static/js/sidebar-menu.js"
+		th:src="@{/js/sidebar-menu.js}"></script>
+	<script>
+    $.sidebarMenu($('.sidebar-menu'))
+  </script>
 
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
-<script src="../static/js/index.js"
-	th:src="@{/js/index.js}"></script>
 
 </body>
 </html>

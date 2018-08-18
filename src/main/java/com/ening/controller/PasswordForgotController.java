@@ -85,7 +85,7 @@ public class PasswordForgotController {
 			model.addAttribute("successMessage", "A password reset link has been sent to " + userEmail);
 		}
 
-		return userForgotTemplate;
+		return "redirect:/login";
 
 	}
 

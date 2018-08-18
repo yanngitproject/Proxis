@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ening.entities.User;
+import com.ening.providers.Constants;
 import com.ening.repositories.UserRepository;
 
 @Controller
@@ -29,19 +31,21 @@ public class LoginController {
 
 
 	@RequestMapping("/login")
-	public String login(RedirectAttributes rattrs) {
+	public String login(Model model,RedirectAttributes rattrs) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 
 		if (auth != null && auth.isAuthenticated()
 				&& !(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
-			
-			
-			return "redirect:/user";
+		     return "redirect:/user";
 		}
+		
+		User user = new User();
+		model.addAttribute("user", user);
+		model.addAttribute("genders", Constants.genders);
 
-		return loginIndexTemplate;
+		return "login/index";
 
 	}
 
@@ -58,7 +62,7 @@ public class LoginController {
 
 		model.addAttribute("failed", "Authentification failed ");
 
-		return loginIndexTemplate;
+		return "login/index";
 	}
 
 	
@@ -70,7 +74,13 @@ public class LoginController {
 			httpSession.invalidate();
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return  "/welcome";// "redirect:/login?logout";
+		return   "redirect:/login?logout";
+	}
+	
+	@RequestMapping("/")
+	public String welcome() {
+
+		return "redirect:/login";
 	}
 
 	

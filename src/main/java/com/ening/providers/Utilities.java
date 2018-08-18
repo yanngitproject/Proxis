@@ -83,7 +83,7 @@ public interface Utilities {
 	}
 
 	static Date setStringToDateWithoutHour(String s) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = sdf.parse(s);
 		return date;
 	}

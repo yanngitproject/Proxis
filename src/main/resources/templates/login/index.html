@@ -3,50 +3,97 @@
 <head>
 <title>LOGIN</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="../static/css/login.css"
+	th:href="@{/css/login.css}" />
+	
 </head>
-
-<body>
-	<br />
-	<div class="container">
-
-		<a th:href="@{/welcome}">Home</a> <br />
-		<div class="col-lg-12 well" style="width: 750px; margin: 0px auto">
-
-
-			<br />
-			<div class="panel-body">
-				<p>Login</p>
-				<form method="post" th:action="@{/login}" autocomplete="off">
-					<div class="form-group">
-						<input class="form-control" name="user_name" id="inputName"
-							placeholder="Name" type="text" required="true" />
-					</div>
-
-					<div class="form-group">
-						<div class="form-group">
-							<input type="password" class="form-control" id="inputPassword"
-								name="user_password" placeholder="Password" required="true" />
+<body style="background: #222d32;">
+<!-- <div style="float:left;"><img th:src="@{/css/images/logos.png}" /></div>  -->
+	<div class="login-wrap">
+		<div class="login-html">
+			<div style="text-align:center;"><h2 >AVOLAVOL</h2><br></div>
+		
+			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
+				for="tab-1" class="tab">Sign In</label> <input id="tab-2"
+				type="radio" name="tab" class="sign-up"><label for="tab-2"
+				class="tab">Sign Up</label>
+			<div class="login-form">
+				<div class="sign-in-htm">
+					<form method="post" th:action="@{/login}" autocomplete="off">
+						<div class="group">
+							<label for="user" class="label">Username</label> <input id="user"
+								name="user_name" type="text" class="input" required="true">
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="form-group">
-							<input type='checkbox' name="remember" /> Remember Me
+						<div class="group">
+							<label for="pass" class="label">Password</label> <input id="pass"
+								name="user_password" type="password" class="input"
+								data-type="password" required="true">
 						</div>
+						<div class="group">
+							<input id="check" type="checkbox" class="check" name="remember"
+								checked> <label for="check"><span class="icon"></span>
+								Keep me Signed in</label>
+						</div>
+						<div class="group">
+							<input type="submit" class="button" value="Sign In">
+						</div>
+					</form>
+					<div class="hr"></div>
+					<div class="foot-lnk">
+						<a th:href="@{/forgot}">Forgot Password?</a>
 					</div>
-					<div class="form-group">
-						<button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+				</div>
+				<div class="sign-up-htm">
+					<form method="post" th:action="@{/register}"
+							th:object="${user}" autocomplete="off">
+						<div class="group">
+							<label for="user" class="label">You are a</label> <select id="sel1" 
+								th:field="*{userType}" name="type" class="form-contol input" required="true">
+								<option value="Patient">PATIENT</option>
+								<option value="Practitioner">DOCTOR</option>
+							</select>
+						</div>
+
+						<div class="group">
+							<label for="user" class="label">Gender</label> <select id="sel2"
+								th:field="*{userSex}" class="form-contol input" name="gender" >
+								<option value="Man">Man</option>
+								<option value="Woman">Woman</option>
+							</select>
+						</div>
+
+						<div class="group">
+							<label for="user" class="label">Last Name</label> <input
+								id="userLastName" name="lastname" th:field="*{userLastName}"
+								type="text" class="input" required="true">
+						</div>
+						<div class="group">
+							<label for="user" class="label">First Name</label> <input
+								id="userFirstName" name="firstname" th:field="*{userFirstName}"
+								type="text" class="input" required="true">
+						</div>
+
+						<div class="group">
+							<label for="pass" class="label">Email Address</label> <input
+								id="email" type="text" class="input" name="email"
+								th:field="*{userEmail}" required="true">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">Phone Number</label> <input
+								id="phone" type="text" class="input"
+								th:field="*{userPhoneNumber}" name="phonenumber" required="true">
+						</div>
+						<div class="group">
+							<input type="submit" class="button" value="Sign Up">
+						</div>
+					</form>
+					<div class="hr"></div>
+					<div class="foot-lnk">
+						<label for="tab-1">Already Member?</a>
 					</div>
-				</form>
-				<p>
-					<a th:href="forgot">forgot your credentials ? </a>
-				</p>
-				<p th:text="${failed}" style="background: red; font-weight: 5px;"></p>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
 </body>
 </html>

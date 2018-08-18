@@ -3,31 +3,38 @@
 <head>
 <title>Set your Password</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+<link rel="stylesheet" type="text/css" href="../static/css/login.css"
+	th:href="@{/css/login.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.min.css"
+	th:href="@{/css/jquery-ui.min.css}" />
 </head>
 
 <body>
 
 	<div>
-	<div>
-		<p>Set your Password</p>
-		<form th:if="!${invalidToken}" id="passwordForm"  th:action="@{/confirm}"
-			method="post">
+		<div>
+			<p>Set your Password</p>
+			<form th:if="!${invalidToken}" id="passwordForm"
+				th:action="@{/confirm}" method="post">
 
-			<input type="hidden" name="token" th:value="${confirmationToken}" />
+				<input type="hidden" name="token" th:value="${confirmationToken}" />
 
-			<input name="password" type="password" id="password"
-				placeholder="Password" /> <span></span> <input type="password"
-				class="form-control" id="signup-password-confirm"
-				placeholder="Confirm Password" name="ConfirmPassword"
-				data-fv-notempty="true"
-				data-fv-notempty-message="Please confirm password"
-				data-fv-identical="true" data-fv-identical-field="password"
-				data-fv-identical-message="Both passwords must be identical" /> <input
-				type="submit" class="btn btn-primary block full-width m-b"
-				value="Activate" />
-		</form>
-		
+				<input name="password" type="password" id="password"
+					placeholder="Password" /> <span></span> <input type="password"
+					class="form-control" id="signup-password-confirm"
+					placeholder="Confirm Password" name="ConfirmPassword"
+					data-fv-notempty="true"
+					data-fv-notempty-message="Please confirm password"
+					data-fv-identical="true" data-fv-identical-field="password"
+					data-fv-identical-message="Both passwords must be identical" /> <input
+					type="submit" class="btn btn-primary block full-width m-b"
+					value="Activate" />
+			</form>
+
 		</div>
 
 		<div th:if="${successMessage}" class="alert alert-success"

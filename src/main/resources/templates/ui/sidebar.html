@@ -2,35 +2,159 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
+<!--                              DOCTOR                                        -->
 
 
-<div class="zoom" th:fragment="sidebar">
-	<a class="zoom-fab zoom-btn-large" id="zoomBtn"><i
-		class="fa fa-bars"></i></a>
-	<ul class="zoom-menu">
-		<li><a th:href="@{/}"
-			class="zoom-fab zoom-btn-sm zoom-btn-tangram scale-transition scale-out"><i
-				class="fa fa-dashboard"></i></a></li>
-		<li><a th:href="@{practitioner(id=${practitioner.userId})}"
-			class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out"><i
-				class="fa fa-user"></i></a></li>
-		<li><a th:href="@{disponibilities(id=${practitioner.userId})}"
-			class="zoom-fab zoom-btn-sm zoom-btn-doc scale-transition scale-out"><i
-				class="fa fa-calendar"></i></a></li>
-		<li><a th:href="@{consultations(id=${practitioner.userId})}"
-			class="zoom-fab zoom-btn-sm zoom-btn-report scale-transition scale-out"><i
-				class="fa fa-address-book"></i></a></li>
+<div style="float: left;" class="sidebar" th:fragment="sidebar">
+	<section style="width: 200px">
+		<ul class="sidebar-menu" style="height: 760px;">
+			<li class="sidebar-header" style="text-align: center;">HOME</li>
+			<li><a> <i class="fa fa-tachometer-alt"></i> <span>Dashboard</span>
+			</a></li>
+			<li><a th:href="@{/practitioner(id=${practitioner.userId})}">
+					<i class="fa fa-user"></i> <span>Personal Data</span>
+			</a></li>
+			<li><a th:href="@{disponibilities(id=${practitioner.userId})}">
+					<i class="fa fa-calendar-plus"></i> <span>Disponibilities</span> <small
+					class="label pull-right label-danger">3</small>
+			</a></li>
 
-	</ul>
-	<div class="zoom-card scale-transition scale-out">
-		<ul class="zoom-card-content">
-			<li>Content</li>
-			<li>Content</li>
-			<li>Content</li>
-			<li>Content</li>
-		
+			<li><a >
+					<i class="fa fa-procedures"></i> <span>Consultations</span> <i
+					class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="sidebar-submenu">
+				<li><a th:href="@{consultations/list(id=${practitioner.userId})}"><i
+							class="fa fa-stethoscope"></i>List</a></li>
+					<li><a href="../examples/invoice.html"><i
+							class="fa fa-address-book"></i>My patients</a></li>
+					<li><a href="../examples/file-medical.html"><i
+							class="fa fa-file-medical"></i> Prescriptions</a></li>
+				</ul></li>
+			<li><a href="#"> <i class="fa fa-chart-line"></i> <span>Charts</span>
+					<i class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="sidebar-submenu">
+					<li><a href="../charts/chartjs.html"><i
+							class="fa fa-circle-o"></i> ChartJS</a></li>
+					<li><a href="../charts/morris.html"><i
+							class="fa fa-circle-o"></i> Morris</a></li>
+					<li><a href="../charts/flot.html"><i
+							class="fa fa-circle-o"></i> Flot</a></li>
+					<li><a href="../charts/inline.html"><i
+							class="fa fa-circle-o"></i> Inline charts</a></li>
+				</ul></li>
+
+
+
+
+			<li><a href="../mailbox/mailbox.html"> <i
+					class="fa fa-comments"></i> <span>Messages</span> <small
+					class="label pull-right label-warning">12</small>
+			</a></li>
+			<li><a href="../mailbox/mailbox.html"> <i class="fa fa-bell"></i>
+					<span>Notifications</span> <small
+					class="label pull-right label-danger">8</small>
+			</a></li>
+			<li><a href="../mailbox/mailbox.html"> <i class="fa fa-star"></i>
+					<span>Your Score</span> <small class="label pull-right label-info">13</small>
+			</a></li>
+			<li><a href="../../documentation/index.html"><i
+					class="fa fa-book"></i> <span>Documentation</span></a></li>
+
+			<li><a href="#"> <i class="fa fa-info"></i> <span>INFORMATIONS</span>
+					<i class="fa fa-angle-left pull-right"></i>
+
+			</a>
+				<ul class="sidebar-submenu" style="display: none;">
+					<li><a href="top-nav.html"><i class="fa fa-user-md"></i>Doctors</a></li>
+					<li><a href="boxed.html"><i
+							class="fa fa-medrt"></i>Pharmacies</a></li>
+					<li><a href="fixed.html"><i class="fa fa-hospital"></i>Hospital</a></li>
+				</ul></li>
+
+			<li><a href="#"> <i class="fa fa-user-circle"></i> <span>Account</span>
+					<i class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/logout}"><i class="fa fa-circle-o"></i>Logout</a></li>
+					<li><a href="../examples/profile.html"><i
+							class="fa fa-circle-o"></i>Delete</a></li>
+				</ul></li>
+
 		</ul>
-	</div>
+	</section>
 </div>
+<!--                              PATIENT                                        -->
+
+
+<div style="float: left;" class="sidebar" th:fragment="sidebar2">
+	<section style="width: 200px">
+		<ul class="sidebar-menu" style="height: 760px;">
+			<li class="sidebar-header" style="text-align: center;">HOME</li>
+			<li><a> <i class="fa fa-tachometer-alt"></i> <span>Dashboard</span>
+			</a></li>
+			<li><a th:href="@{/patient(id=${patient.userId})}">
+					<i class="fa fa-user"></i> <span>Personal Data</span>
+			</a></li>
+			<li><a th:href="@{/find(id=${patient.userId})}">
+					<i class="fa fa-calendar-plus"></i> <span>Find a doctor</span> <small
+					class="label pull-right label-danger">3</small>
+			</a></li>
+
+			<li><a >
+					<i class="fa fa-procedures"></i> <span>Consultations</span> 
+			</a></li>
+			<li><a href="#"> <i class="fa fa-chart-line"></i> <span>Charts</span>
+					<i class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="sidebar-submenu">
+					<li><a href="../charts/chartjs.html"><i
+							class="fa fa-circle-o"></i> ChartJS</a></li>
+					<li><a href="../charts/morris.html"><i
+							class="fa fa-circle-o"></i> Morris</a></li>
+					<li><a href="../charts/flot.html"><i
+							class="fa fa-circle-o"></i> Flot</a></li>
+					<li><a href="../charts/inline.html"><i
+							class="fa fa-circle-o"></i> Inline charts</a></li>
+				</ul></li>
+
+
+			<li><a href="../mailbox/mailbox.html"> <i
+					class="fa fa-comments"></i> <span>Messages</span> <small
+					class="label pull-right label-warning">12</small>
+			</a></li>
+			<li><a href="../mailbox/mailbox.html"> <i class="fa fa-bell"></i>
+					<span>Notifications</span> <small
+					class="label pull-right label-danger">8</small>
+			</a></li>
+			
+			<li><a href="../../documentation/index.html"><i
+					class="fa fa-book"></i> <span>Documentation</span></a></li>
+
+			<li><a href="#"> <i class="fa fa-info"></i> <span>INFORMATIONS</span>
+					<i class="fa fa-angle-left pull-right"></i>
+
+			</a>
+				<ul class="sidebar-submenu" style="display: none;">
+					<li><a href="top-nav.html"><i class="fa fa-user-md"></i>How use ening ?</a></li>
+					<li><a href="boxed.html"><i
+							class="fa fa-medrt"></i>Pharmacies</a></li>
+					<li><a href="fixed.html"><i class="fa fa-hospital"></i>Hospital</a></li>
+				</ul></li>
+
+			<li><a href="#"> <i class="fa fa-user-circle"></i> <span>Account</span>
+					<i class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/logout}"><i class="fa fa-circle-o"></i>Logout</a></li>
+					<li><a href="../examples/profile.html"><i
+							class="fa fa-circle-o"></i>Delete</a></li>
+				</ul></li>
+
+		</ul>
+	</section>
+</div>
+
 
 </html>

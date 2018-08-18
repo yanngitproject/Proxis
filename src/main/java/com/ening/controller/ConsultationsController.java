@@ -14,6 +14,7 @@ import com.ening.repositories.PractitionerRepository;
 import com.ening.repositories.UserRepository;
 
 @Controller
+@RequestMapping("/consultations")
 public class ConsultationsController {
 
 
@@ -25,16 +26,13 @@ public class ConsultationsController {
 
 
 
-	@RequestMapping("/consultations")
+	@RequestMapping("/list")
 	public String Get(Model model, @RequestParam("id") long id) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		Practitioner practitioner = practitionerRepository.getOne(id);
-		
 		model.addAttribute("practitioner", practitioner);
 		
-		return "consultations";
+		return "consultations_list";
 
 	}
 	

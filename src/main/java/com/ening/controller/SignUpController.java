@@ -67,39 +67,38 @@ public class SignUpController {
 	static final String userRegisterTemplate = userTemplatesPrefix + "/create";
 	static final String userConfirmTemplate = userTemplatesPrefix + "/confirm";
 
-	@RequestMapping("")
-	public String users(Model model) {
-		List<User> users = uRepository.findAll();
-		model.addAttribute("usersList", users);
-		return userIndexTemplate;
-	}
+//	@RequestMapping("")
+//	public String users(Model model) {
+//		List<User> users = uRepository.findAll();
+//		model.addAttribute("usersList", users);
+//		return userIndexTemplate;
+//	}
 
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/register")
-	public String registerPage(Model model) {
-		User user = new User();
-		model.addAttribute("user", user);
-		model.addAttribute("genders", Constants.genders);
-		return userRegisterTemplate;
-	}
+//	@GetMapping("/register")
+//	public String registerPage(Model model) {
+//		User user = new User();
+//		model.addAttribute("user", user);
+//		model.addAttribute("genders", Constants.genders);
+//		return userRegisterTemplate;
+//	}
 
 	@PostMapping("/register")
-	public ModelAndView registration(ModelAndView modelAndView, @ModelAttribute("user") @Valid User u,
+	public String registration(Model model, @ModelAttribute("user") @Valid User u,
 			BindingResult result, HttpServletRequest request) throws MessagingException, IOException {
 
 		User userExists = userService.findUserByEmail(u.getUserEmail());
 
 		if (userExists != null) {
-			modelAndView.addObject("alreadyRegiste	redMessage",
+			model.addAttribute("alreadyRegiste	redMessage",
 					"Oops! There is already a user registered with the email provided.");
-			modelAndView.setViewName(userRegisterTemplate);
-			result.reject("email");
+			return "login/index";
 		}
 
 		if (result.hasErrors()) {
-			modelAndView.setViewName(userRegisterTemplate);
+			return "login/index";
 		} else {
 			
 			String confirmationToken = UUID.randomUUID().toString();
@@ -152,11 +151,11 @@ public class SignUpController {
 					+ "/confirm?token=" + confirmationToken);
 			registrationEmail.setFrom("cawapps@gmail.com");
 			emailService.sendEmail(registrationEmail);
-			modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + u.getUserEmail());
-			modelAndView.setViewName(userRegisterTemplate);
+			model.addAttribute("confirmationMessage", "A confirmation e-mail has been sent to " + u.getUserEmail());
+			
+			return "login/index";
 		}
 
-		return modelAndView;
 	}
 
 	@GetMapping(value = "/confirm")

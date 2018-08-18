@@ -3,130 +3,194 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>patient</title>
-<link rel="stylesheet" type="text/css" href="../static/css/design.css"
-	th:href="@{/css/design.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.datetimepicker.css"
+	th:href="@{/css/bootstrap.datetimepicker.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.min.css"
+	th:href="@{/css/jquery-ui.min.css}" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/sidebar-menu.css"
+	th:href="@{/css/sidebar-menu.css}" />
+
+
+
+<script src="../static/js/jquery-3.2.1.min.js"
+	th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script src="../static/js/jquery-ui.min.js"
+	th:src="@{/js/jquery-ui.min.js}"></script>
+<script src="../static/js/bootstrap.min.js"
+	th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/bootstrap.datetimepicker.js"
+	th:src="@{/js/bootstrap.datetimepicker.js}"></script>
+
+
+
 </head>
-<body>
-	<div class="tab">
-		<button class="tablinks" onclick="openCity(event, 'book')">Book
-			a doctor</button>
-		<button class="tablinks" id="defaultOpen"
-			onclick="openCity(event, 'profil')">My Profile</button>
-		<button class="tablinks" onclick="openCity(event, 'consultations')">
-			My consultations</button>
-		<a th:href="@{/logout}" style="float: right;">Logout</a>
-	</div>
+<body style="background: #222d32;
+    color:white;">
+	<div th:replace="ui/sidebar :: sidebar2"></div>
 
-	<div id="book" class="tabcontent"></div>
 
-	<div id="profil" class="tabcontent">
-		<form th:action="@{/UpdatePatient}" method="post">
 
-			<fieldset>
-				<legend>Personnal Informations</legend>
-				<input type="hidden" th:field="*{patient.userId}" /> <input
-					type="hidden" th:field="*{patient.userName}" /> <input
-					type="hidden" th:field="*{patient.enable}" /> <input type="hidden"
-					th:field="*{patient.userPassword}" /> <input type="hidden"
-					th:field="*{patient.userConnectionNumber}" />
-					<input type="hidden"
-					th:field="*{patient.createdAt}" /> 
-					<input type="hidden"
-					th:field="*{patient.updatedAt}" /> 
-					<input type="hidden"
-					th:field="*{patient.confirmationToken}" /> 
-					<input type="hidden"
-					th:field="*{patient.resetToken}" /> 
-					<input type="hidden"
-					th:field="*{patient.userType}" /> 
-				<p>
-					<label>FirstName : </label><input type="text"
+
+	<form th:action="@{/UpdatePatient}" method="post">
+
+
+		<input type="hidden" th:field="*{patient.userId}" /> <input
+			type="hidden" th:field="*{patient.userName}" /> <input type="hidden"
+			th:field="*{patient.enable}" /> <input type="hidden"
+			th:field="*{patient.userPassword}" /> <input type="hidden"
+			th:field="*{patient.userConnectionNumber}" /> <input type="hidden"
+			th:field="*{patient.createdAt}" /> <input type="hidden"
+			th:field="*{patient.updatedAt}" /> <input type="hidden"
+			th:field="*{patient.confirmationToken}" /> <input type="hidden"
+			th:field="*{patient.resetToken}" /> <input type="hidden"
+			th:field="*{patient.userType}" />
+
+		<div class="form-row">
+
+			<div class="form-group">
+
+				<div class="col-xs-4">
+					<label>FirstName : </label><input type="text" class="form-control"
 						th:field="*{patient.userFirstName}" />
-				</p>
-				<p>
-					<label>Last Name : </label><input type="text"
+				</div>
+
+			</div>
+			<div class="form-group">
+
+				<div class="col-xs-4">
+					<label>Last Name : </label><input type="text" class="form-control"
 						th:field="*{patient.userLastName}" />
-				</p>
-				<p>
-					<label>Birthday : </label><input type="date"
-						th:field="*{patient.userBirthdayDate}" />
-				</p>
-				<p>
-					<label>Email : </label><input type="email"
-						placeholder="Example : your@proxis.com"
-						th:field="*{patient.userEmail}" />
-				</p>
-				<p>
-					<label>Phone Number : </label><input type="number"
-						th:field="*{patient.userPhoneNumber}" />
-				</p>
 
-				<p>
-					<label>City or neighborhood nearest you : </label><select
-						th:field="*{patient.userCity}">
-						<optgroup th:label="DOUALA">
-							<option th:each="city:${doualaCities}" th:text=${city}
-								th:value=${city}></option>
-						</optgroup>
-						<optgroup th:label="YAOUNDE">
-							<option th:each="city:${yaoundeCities}" th:text=${city}
-								th:value=${city}></option>
-						</optgroup>
-					</select>
-				</p>
+				</div>
 
-<!-- 				<p> -->
-<!-- 					<label>Upload your CNI : </label><input type="file" th:field="*{patient.cni}" name="cni" /> -->
-<!-- 				</p> -->
+			</div>
+		</div>
 
-			</fieldset>
+		<div class="form-group form-row">
 
-			<fieldset>
-				<legend>Medical Informations</legend>
+			<div class="col-xs-4">
+				<label>Birthday : </label><input type="date" class="form-control"
+					th:field="*{patient.userBirthdayDate}" />
+			</div>
 
-				<p>
-					<label>Gender : </label><select th:field="*{patient.userGender}"><option
-							th:each="gender : ${genders}" th:value="${gender}"
-							th:text="${gender}"></option>
-					</select>
-				</p>
+		</div>
+		<div class="form-group">
 
-				<p>
-					<label>Weight : </label><input type="number"
-						th:text="${userweight}" th:field="*{patient.userweight}" />
-				</p>
-				<p>
-					<label>Height : </label><input type="number"
-						th:text="${userHeight}" th:field="*{patient.userHeight}" />
-				</p>
+			<div class="col-xs-4">
+				<label>Email : </label><input type="email" class="form-control"
+					placeholder="Example : your@proxis.com"
+					th:field="*{patient.userEmail}" />
 
-				<p>
-					<label>Blood group : </label><select
-						th:field="*{patient.bloodGroup}">
-						<option th:each="blood : ${bloods}" th:value="${blood}"
-							th:text="${blood}"></option>
+			</div>
+		</div>
+		<div class="form-group">
 
-					</select>
-				</p>
+			<div class="col-xs-4">
+				<label>Phone Number : </label><input type="text"
+					class="form-control" th:field="*{patient.userPhoneNumber}" />
 
-				<P>
-					<label>Do you have allergies ? </label><br />
-					<input  th:text="${allergies}"
-						th:field="*{patient.allergies}" />
-				<P>
-					<label>Enumerated your important history diseases : </label><br />
-					<input type="text"  th:text="${antecedents}"
-						th:field="*{patient.antecedents}"/>
-			</fieldset>
+			</div>
+		</div>
+		<div class="form-group">
 
-			<input type="submit" value="Update profil">
+			<div class="col-xs-4">
+				<label>City or neighborhood nearest you : </label><select
+					class="form-control" th:field="*{patient.userCity}">
+					<optgroup th:label="DOUALA">
+						<option th:each="city:${doualaCities}" th:text=${city}
+							th:value=${city}></option>
+					</optgroup>
+					<optgroup th:label="YAOUNDE">
+						<option th:each="city:${yaoundeCities}" th:text=${city}
+							th:value=${city}></option>
+					</optgroup>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
 
-		</form>
-	</div>
+			<div class="col-xs-2">
+				<i class="fa fa-male"></i> <i class="fa fa-female"></i> <select
+					th:field="*{patient.userGender}" class="form-control"><option
+						th:each="gender : ${genders}" th:value="${gender}"
+						th:text="${gender}"></option>
+				</select>
 
-	<div id="consultations" class="tabcontent"></div>
+			</div>
+		</div>
+		<div class="form-group">
 
-	<script src="../static/js/design.js" th:src="@{/js/design.js}">
-	</script>
+			<div class="col-xs-4">
+				<i class="fa fa-weight"></i> <label>Weight : </label><input
+					type="text" class="form-control" th:text="${userweight}"
+					th:field="*{patient.userweight}" />
+
+
+			</div>
+		</div>
+		<div class="form-group">
+
+			<div class="col-xs-4">
+				<label>Height : </label><input type="text" th:text="${userHeight}"
+					class="form-control" th:field="*{patient.userHeight}" />
+
+
+			</div>
+		</div>
+		<div class="form-group">
+
+			<div class="col-xs-4">
+				<label>Blood group : </label><select class="form-control"
+					th:field="*{patient.bloodGroup}">
+					<option th:each="blood : ${bloods}" th:value="${blood}"
+						th:text="${blood}"></option>
+
+				</select>
+			</div>
+
+		</div>
+
+		<div class="form-group">
+			<div class="col-xs-4">
+				<label>Do you have allergies ? </label><br /> <input
+					class="form-control" th:text="${allergies}"
+					th:field="*{patient.allergies}" />
+
+			</div>
+		</div>
+		<div class="form-group">
+
+			<div class="col-xs-4">
+				<label>Enumerated your important history diseases : </label><br />
+				<input type="text" class="form-control" th:text="${antecedents}"
+					th:field="*{patient.antecedents}" />
+			</div>
+		</div>
+		<div class="form-group">
+
+			<div class="col-xs-4">
+				<input type="submit" class="form-control  btn-info"
+					value="Update profil">
+
+			</div>
+
+		</div>
+	</form>
+	<script src="../static/js/sidebar-menu.js"
+		th:src="@{/js/sidebar-menu.js}"></script>
+	<script>
+    $.sidebarMenu($('.sidebar-menu'))
+  </script>
 </body>
 </html>

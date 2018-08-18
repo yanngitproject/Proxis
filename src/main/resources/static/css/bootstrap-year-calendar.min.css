@@ -8,13 +8,14 @@
  .calendar:after{clear:both;content:"";display:block}
  .calendar.calendar-rtl{direction:rtl}
  .calendar.calendar-rtl table tr td span{float:right}
- .calendar table{width:1020px;}
+ .calendar table{width:1020px;color:white;}
  .calendar table td,.calendar table th{text-align:center;width:20px;height:20px;border:none;padding:4px 5px;font-size:12px}
- .calendar .calendar-header{max-width:500px	;margin-bottom:20px;}
+ .calendar .calendar-header{max-width:500px	;margin-bottom:20px;display: none;}
  .calendar .calendar-header table{width:100%}
  .calendar .calendar-header table th{font-size:22px;padding:5px 10px}
  .calendar .calendar-header table th:hover{background:#eee;cursor:pointer}
- .calendar .calendar-header table th.disabled,.calendar .calendar-header table th.disabled:hover{background:0 0;cursor:default;color:#fff}
+  .calendar .calendar-header table th.disabled,.calendar .calendar-header table th.disabled:hover{background:#222d32;cursor:default;}
+/*  .calendar .calendar-header table th.disabled,.calendar .calendar-header table th.disabled:hover{background:0 0;cursor:default;color:#fff} */
  .calendar .calendar-header table th.next,.calendar .calendar-header table th.prev{width:20px}
  .calendar .year-title{font-weight:700;text-align:center;height:20px;width:auto}
  .calendar .year-neighbor{color:#aaa}

@@ -3,17 +3,24 @@
 <head>
 <title>Forgot</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="../static/css/login.css"
+	th:href="@{/css/login.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.min.css"
+	th:href="@{/css/jquery-ui.min.css}" />
 
 </head>
 
-<body>
+<body style="background: #222d32;">
 	<br />
-	<div class="container">
+	<div class="container" >
 
 		<br />
 		<div class="col-lg-12 well" style="width: 750px; margin: 0px auto">
-			<p>Hello,Enter your Email address we will send you a link to
-				reset your password</p>
+			<p>AVOLAVOL</p>
 
 			<br />
 			<div class="panel-body">
@@ -27,19 +34,19 @@
 
 
 				<form method="post" th:action="@{/forgot}" autocomplete="off">
-					<div class="form-group">
-						<label>Email :</label> <input class="form-control" name="email"
+					<div class="group">
+						<label for="pass" class="label">Email</label> <input
+							class="input form-control" name="email"
 							placeholder="user@proxis.cm" type="email" required="true" />
 					</div>
+<br>
 
-
-					<div class="form-group">
-						<button class="btn btn-info btn-lg btn-block" type="submit">Set
-							my credentials</button>
+					<div class="group">
+						<button class="input btn btn-success btn-block" type="submit">Send my credentials </button>
 					</div>
 				</form>
 				<p>
-					<a th:href="login" class="btn">Sign In </a>
+					<a th:href="@{/login}" class="btn">Sign In </a>
 				</p>
 
 			</div>
